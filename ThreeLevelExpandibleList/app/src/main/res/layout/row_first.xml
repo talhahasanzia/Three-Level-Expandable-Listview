@@ -11,7 +11,7 @@
         android:id="@+id/rowParentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
+        android:paddingLeft="24dp"
         android:textColor="?colorPrimary"
         android:textSize="20sp"/>
 </LinearLayout>

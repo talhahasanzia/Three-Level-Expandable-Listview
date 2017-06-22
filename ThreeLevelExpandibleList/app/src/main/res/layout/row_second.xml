@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/rowSecondText"
-        android:paddingLeft="20dp"
+        android:paddingLeft="28dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:textSize="14sp"/>
+        android:textSize="18sp"/>
 </LinearLayout>

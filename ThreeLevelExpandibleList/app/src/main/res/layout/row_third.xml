@@ -9,6 +9,6 @@
         android:id="@+id/rowThirdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:textSize="24sp" />
+        android:paddingLeft="32dp"
+        android:textSize="16sp" />
 </LinearLayout>
