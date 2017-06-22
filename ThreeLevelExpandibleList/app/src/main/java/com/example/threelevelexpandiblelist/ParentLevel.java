@@ -82,9 +82,15 @@ public class ParentLevel extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
         SecondLevelExpandableListView secondLevelELV = new SecondLevelExpandableListView(context);
-        secondLevelELV.setAdapter(new SecondLevelAdapter(context, data.get(groupPosition)));
+
+        String[] headers = secondLevel.get(groupPosition);
+
+        secondLevelELV.setAdapter(new SecondLevelAdapter(context, headers, data.get(groupPosition)));
+
         secondLevelELV.setGroupIndicator(null);
+
         return secondLevelELV;
     }
 

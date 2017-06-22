@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     String[] movies = new String[]{"Horror", "Action", "Thriller/Drama"};
-    String[] games = new String[]{"FPS", "MOBA", "RPG", "RACING"};
+    String[] games = new String[]{"Fps", "Moba", "Rpg", "Racing"};
 
 
     // movies

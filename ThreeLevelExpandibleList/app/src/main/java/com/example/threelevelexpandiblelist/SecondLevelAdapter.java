@@ -17,21 +17,25 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
 
     HashMap<String, String[]> data;
 
+    String[] headers;
 
-    public SecondLevelAdapter(Context context, HashMap<String, String[]> data) {
+
+    public SecondLevelAdapter(Context context, String[] headers, HashMap<String, String[]> data) {
         this.context = context;
         this.data = data;
+        this.headers = headers;
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groupPosition;
+
+        return headers[groupPosition];
     }
 
     @Override
     public int getGroupCount() {
 
-        return data.keySet().size();
+        return headers.length;
     }
 
     @Override
@@ -45,7 +49,7 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_second, null);
             TextView text = (TextView) convertView.findViewById(R.id.rowSecondText);
-            text.setText(data.keySet().toArray()[groupPosition].toString());
+            text.setText(getGroup(groupPosition).toString());
         }
         return convertView;
     }
@@ -66,14 +70,17 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_third, null);
             TextView text = (TextView) convertView.findViewById(R.id.rowThirdText);
-            text.setText(data.get(data.keySet().toArray()[groupPosition].toString())[childPosition]);
+
+            String[] children = data.get(headers[groupPosition]);
+
+            text.setText(children[childPosition]);
         }
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
+        return data.get(headers[groupPosition]).length;
     }
 
     @Override
