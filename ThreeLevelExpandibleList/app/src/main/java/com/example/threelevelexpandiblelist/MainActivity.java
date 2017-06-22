@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         thirdLevelGames.put(games[0], fps);
         thirdLevelGames.put(games[1], moba);
         thirdLevelGames.put(games[2], rpg);
-        thirdLevelGames.put(games[2], racing);
+        thirdLevelGames.put(games[3], racing);
 
 
         data.add(thirdLevelMovies);

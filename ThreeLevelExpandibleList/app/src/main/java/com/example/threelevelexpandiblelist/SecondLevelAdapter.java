@@ -8,7 +8,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.List;
 
 
 public class SecondLevelAdapter extends BaseExpandableListAdapter {
@@ -44,8 +43,8 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.row_third, null);
-            TextView text = (TextView) convertView.findViewById(R.id.rowText);
+            convertView = inflater.inflate(R.layout.row_second, null);
+            TextView text = (TextView) convertView.findViewById(R.id.rowSecondText);
             text.setText(data.keySet().toArray()[groupPosition].toString());
         }
         return convertView;
@@ -65,8 +64,8 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.row_second, null);
-            TextView text = (TextView) convertView.findViewById(R.id.rowText);
+            convertView = inflater.inflate(R.layout.row_third, null);
+            TextView text = (TextView) convertView.findViewById(R.id.rowThirdText);
             text.setText(data.get(data.keySet().toArray()[groupPosition].toString())[childPosition]);
         }
         return convertView;

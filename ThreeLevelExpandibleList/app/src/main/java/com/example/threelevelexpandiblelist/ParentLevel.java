@@ -74,7 +74,7 @@ public class ParentLevel extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_first, null);
-            TextView text = (TextView) convertView.findViewById(R.id.rowText);
+            TextView text = (TextView) convertView.findViewById(R.id.rowParentText);
             text.setText(this.parent[groupPosition]);
         }
         return convertView;
