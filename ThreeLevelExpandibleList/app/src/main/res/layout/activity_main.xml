@@ -7,9 +7,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.threelevelexpandiblelist.MainActivity">
+    tools:context="com.talhahasanzia.threelevelexpandiblelist.MainActivity">
 
   <ExpandableListView
+
       android:id="@+id/expandible_listview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"></ExpandableListView>

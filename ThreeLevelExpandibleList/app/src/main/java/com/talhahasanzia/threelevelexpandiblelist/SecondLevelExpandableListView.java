@@ -1,4 +1,4 @@
-package com.example.threelevelexpandiblelist;
+package com.talhahasanzia.threelevelexpandiblelist;
 
 import android.content.Context;
 import android.widget.ExpandableListView;

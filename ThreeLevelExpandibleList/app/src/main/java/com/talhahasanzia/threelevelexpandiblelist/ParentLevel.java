@@ -1,26 +1,29 @@
-package com.example.threelevelexpandiblelist;
+package com.talhahasanzia.threelevelexpandiblelist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ParentLevel extends BaseExpandableListAdapter {
 
-    String[] parent;
+    String[] parentHeaders;
     List<String[]> secondLevel;
     private Context context;
-    List<HashMap<String, String[]>> data;
+    List<LinkedHashMap<String, String[]>> data;
 
-    public ParentLevel(Context context, String[] parent, List<String[]> secondLevel, List<HashMap<String, String[]>> data) {
+    public ParentLevel(Context context, String[] parentHeader, List<String[]> secondLevel, List<LinkedHashMap<String, String[]>> data) {
         this.context = context;
 
-        this.parent = parent;
+        this.parentHeaders = parentHeader;
 
         this.secondLevel = secondLevel;
 
@@ -29,19 +32,22 @@ public class ParentLevel extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return parent.length;
+        return parentHeaders.length;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
 
-        int count = secondLevel.get(groupPosition).length;
+
+        // no idea why this code is working
+
         return 1;
 
     }
 
     @Override
     public Object getGroup(int groupPosition) {
+
         return groupPosition;
     }
 
@@ -49,7 +55,7 @@ public class ParentLevel extends BaseExpandableListAdapter {
     public Object getChild(int group, int child) {
 
 
-        return data.get(group);
+        return child;
 
 
     }
@@ -71,25 +77,52 @@ public class ParentLevel extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        if (convertView == null) {
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_first, null);
             TextView text = (TextView) convertView.findViewById(R.id.rowParentText);
-            text.setText(this.parent[groupPosition]);
-        }
+            text.setText(this.parentHeaders[groupPosition]);
+
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
-        SecondLevelExpandableListView secondLevelELV = new SecondLevelExpandableListView(context);
+        final SecondLevelExpandableListView secondLevelELV = new SecondLevelExpandableListView(context);
 
         String[] headers = secondLevel.get(groupPosition);
 
-        secondLevelELV.setAdapter(new SecondLevelAdapter(context, headers, data.get(groupPosition)));
+
+        List<String[]> childData = new ArrayList<>();
+        HashMap<String, String[]> secondLevelData=data.get(groupPosition);
+
+        for(String key : secondLevelData.keySet())
+        {
+
+
+            childData.add(secondLevelData.get(key));
+
+        }
+
+
+
+        secondLevelELV.setAdapter(new SecondLevelAdapter(context, headers,childData));
 
         secondLevelELV.setGroupIndicator(null);
+
+
+        secondLevelELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousGroup = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != previousGroup)
+                    secondLevelELV.collapseGroup(previousGroup);
+                previousGroup = groupPosition;
+            }
+        });
+
 
         return secondLevelELV;
     }

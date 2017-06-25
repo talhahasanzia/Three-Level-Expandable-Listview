@@ -1,4 +1,4 @@
-package com.example.threelevelexpandiblelist;
+package com.talhahasanzia.threelevelexpandiblelist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public class SecondLevelAdapter extends BaseExpandableListAdapter {
@@ -15,12 +16,12 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
     private Context context;
 
 
-    HashMap<String, String[]> data;
+    List<String[]> data;
 
     String[] headers;
 
 
-    public SecondLevelAdapter(Context context, String[] headers, HashMap<String, String[]> data) {
+    public SecondLevelAdapter(Context context, String[] headers, List<String[]> data) {
         this.context = context;
         this.data = data;
         this.headers = headers;
@@ -45,18 +46,26 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        if (convertView == null) {
+
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_second, null);
             TextView text = (TextView) convertView.findViewById(R.id.rowSecondText);
-            text.setText(getGroup(groupPosition).toString());
-        }
+            String groupText = getGroup(groupPosition).toString();
+            text.setText(groupText);
+
         return convertView;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childPosition;
+
+        String[] childData;
+
+        childData = data.get(groupPosition);
+
+
+        return childData[childPosition];
     }
 
     @Override
@@ -66,21 +75,27 @@ public class SecondLevelAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        if (convertView == null) {
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.row_third, null);
-            TextView text = (TextView) convertView.findViewById(R.id.rowThirdText);
 
-            String[] children = data.get(headers[groupPosition]);
+            TextView textView = (TextView) convertView.findViewById(R.id.rowThirdText);
 
-            text.setText(children[childPosition]);
-        }
+            String[] childArray=data.get(groupPosition);
+
+            String text = childArray[childPosition];
+
+            textView.setText(text);
+
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return data.get(headers[groupPosition]).length;
+        String[] children = data.get(groupPosition);
+
+
+        return children.length;
     }
 
     @Override

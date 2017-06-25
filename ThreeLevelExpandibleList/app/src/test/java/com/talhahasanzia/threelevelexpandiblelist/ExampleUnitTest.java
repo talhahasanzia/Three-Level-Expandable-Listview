@@ -1,4 +1,4 @@
-package com.example.threelevelexpandiblelist;
+package com.talhahasanzia.threelevelexpandiblelist;
 
 import org.junit.Test;
 
