@@ -7,6 +7,10 @@ extension of its [gist](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) which
 
 ![Demo gif](/sample.gif?raw=true "Demo")
 
+
+- Code is not using ViewHolder pattern hence it is not recycled.
+- Code is not memory efficient.
+
 ## Getting Started
 
 - Download or clone project
