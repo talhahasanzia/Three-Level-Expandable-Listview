@@ -80,7 +80,9 @@ extension of its [gist](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) which
 - Min SDK 16, Target SDK 25
 - Build Tools 25.0.3
 - Gradle 2.3.2
+
 *Code will work fine as long as above configurations are met.*
+
 *You will need to possibly edit code if you change min sdks etc.*
 
 
