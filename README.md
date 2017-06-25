@@ -2,7 +2,8 @@
 
 # Three Level Exapandable List View
 
-This is boiler plate code to implement 3-level exapandable list view in Android
+This is boiler plate code to implement 3-level exapandable list view in Android. This code will work with dynamic data, an
+extension of its [gist](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) which works only on static string text values.
 
 ## Getting Started
 
