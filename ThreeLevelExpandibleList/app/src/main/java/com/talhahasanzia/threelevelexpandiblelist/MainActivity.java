@@ -11,7 +11,9 @@ import java.util.List;
 
 
 /**
- * The type Main activity.
+ * Add in parent for more main category
+ * Define array for genre (subcategory) for each parent category added
+ * Define LinkedHasMap for each subcategory where key is subcategory name, and value is a string array
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -20,16 +22,31 @@ public class MainActivity extends AppCompatActivity {
      */
     ExpandableListView expandableListView;
 
+    // We have two  main category. (third one is left for example addition)
+
     /**
      * The Parent Group Names.
      */
-    String[] parent = new String[]{"MOVIES", "GAMES"}; // add more but remember to add further details
-    //  String[] parent = new String[]{"MOVIES", "GAMES", "SERIALS"};
+    String[] parent = new String[]{"MOVIES", "GAMES"}; // comment this when uncomment bottom
+    //String[] parent = new String[]{"MOVIES", "GAMES", "SERIALS"}; // example for 3 main category lists
+
+    /*
+    If above line is uncommented uncomment the following too:
+    - serials array
+    - serials genre list
+    - Datastructure for Third level Serials.
+    - secondLevel.add(serials);
+    - serials category all data
+    - data.add(thirdLevelSerials);
+
+     */
 
     /**
      * The Movies Genre List.
      */
-// We have two main category
+
+
+    // We have two  main category. (third one is left for example addition)
     String[] movies = new String[]{"Horror", "Action", "Thriller/Drama"};
     /**
      * The Games Genre List.
@@ -39,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The Serials Genre List.
      */
-    //String[] serials = new String[]{"Crime", "Family", "Comedy"};
-
+    // String[] serials = new String[]{"Crime", "Family", "Comedy"};
 
 
     /**
      * The Horror movie list.
      */
-// movies category has further genres
+    // movies category has further genres
     String[] horror = new String[]{"Conjuring", "Insidious", "The Ring"};
     /**
      * The Action Movies List.
@@ -61,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * The Fps games.
      */
-// games category has further genres
+    // games category has further genres
     String[] fps = new String[]{"CS: GO", "Team Fortress 2", "Overwatch", "Battlefield 1", "Halo II", "Warframe"};
     /**
      * The Moba games.
@@ -76,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
      */
     String[] racing = new String[]{"NFS: Most Wanted", "Forza Motorsport 3", "EA: F1 2016", "Project Cars"};
 
+    // serials genre list
+    /*String[] crime = new String[]{"CSI: MIAMI", "X-Files", "True Detective", "Sherlock (BBC)", "Fargo", "Person of Interest"};
+
+    String[] family = new String[]{"Andy Griffith", "Full House", "The Fresh Prince of Bel-Air", "Modern Family", "Friends"};
+
+    String[] comedy = new String[]{"Family Guy", "Simpsons", "The Big Bang Theory", "The Office"};
+*/
+
 
     /**
      * Datastructure for Third level movies.
@@ -85,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
      * Datastructure for Third level games.
      */
     LinkedHashMap<String, String[]> thirdLevelGames = new LinkedHashMap<>();
+
+    /**
+     * Datastructure for Third level Serials.
+     */
+    // LinkedHashMap<String, String[]> thirdLevelSerials = new LinkedHashMap<>();
 
 
     /**
@@ -105,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         // second level category names (genres)
         secondLevel.add(movies);
         secondLevel.add(games);
+        // secondLevel.add(serials);
 
         // movies category all data
         thirdLevelMovies.put(movies[0], horror);
@@ -123,17 +152,24 @@ public class MainActivity extends AppCompatActivity {
         thirdLevelGames.put(games[3], racing);
 
 
+        // serials category all data
+      /*  thirdLevelSerials.put(serials[0], crime);
+        thirdLevelSerials.put(serials[1], family);
+        thirdLevelSerials.put(serials[2], comedy);
+*/
+
 
         // all data
         data.add(thirdLevelMovies);
         data.add(thirdLevelGames);
+        //data.add(thirdLevelSerials);
 
 
         // expandable listview
         expandableListView = (ExpandableListView) findViewById(R.id.expandible_listview);
 
         // parent adapter
-        ParentLevel parentLevelAdapter = new ParentLevel(this, parent, secondLevel,data);
+        ParentLevel parentLevelAdapter = new ParentLevel(this, parent, secondLevel, data);
 
 
         // set adapter
@@ -146,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                if(groupPosition != previousGroup)
+                if (groupPosition != previousGroup)
                     expandableListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;
             }
