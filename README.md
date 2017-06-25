@@ -14,7 +14,7 @@ extension of its [gist](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) which
 ## Getting Started
 
 - Download or clone project
-- Add in parent array for more main category, parent is top level list.
+- Define parent array for main category, parent is top level list.
 ```
     String[] parent = new String[]{"MOVIES", "GAMES"};
 ```
