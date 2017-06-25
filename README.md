@@ -1,5 +1,103 @@
-# Three-Level-Expandible-Listview
-3-level expandible ListView for android. Extension of gist: https://gist.github.com/st-f/2b2a838d3f0258c5c33f , thanks to @st-f
+# Three Level Exapandable List View
 
-Level 3 is not working properly on dynamic data.
-Code is not optimized, a lot of arrays and lists have copies, primary goal is to get the list working.
+This is boiler plate code to implement 3-level exapandable list view in Android
+
+## Getting Started
+
+- Download or clone project
+- Add in parent array for more main category, parent is top level list.
+```
+    String[] parent = new String[]{"MOVIES", "GAMES"};
+```
+- Define array for genre (subcategory) for each parent category added this is level 2, eg: 
+```
+   String[] movies = new String[]{"Horror", "Action", "Thriller/Drama"}
+   String[] games = new String[]{"Fps", "Moba", "Rpg", "Racing"};
+
+```
+
+- Define level 3 elements in separate arrays:
+```
+ 
+    String[] horror = new String[]{"Conjuring", "Insidious", "The Ring"};
+   
+    String[] action = new String[]{"Jon Wick", "Die Hard", "Fast 7", "Avengers"};
+    
+    String[] thriller = new String[]{"Imitation Game", "Tinker, Tailer, Soldier, Spy", "Inception", "Manchester by the Sea"};
+
+    String[] fps = new String[]{"CS: GO", "Team Fortress 2", "Overwatch", "Battlefield 1", "Halo II", "Warframe"};
+   
+    String[] moba = new String[]{"Dota 2", "League of Legends", "Smite", "Strife", "Heroes of the Storm"};
+    
+    String[] rpg = new String[]{"Witcher III", "Skyrim", "Warcraft", "Mass Effect II", "Diablo", "Dark Souls", "Last of Us"};
+    
+    String[] racing = new String[]{"NFS: Most Wanted", "Forza Motorsport 3", "EA: F1 2016", "Project Cars"};
+
+
+```
+- Define a ```secondLevel``` ArrayList, this will be used as key data to fetch arrays accross levels.
+
+- Define LinkedHasMap for each subcategory where key is subcategory name, and value is a string array,
+
+```
+    LinkedHashMap<String, String[]> thirdLevelMovies = new LinkedHashMap<>();
+
+    LinkedHashMap<String, String[]> thirdLevelGames = new LinkedHashMap<>();
+    
+    ...now putting it all together
+    
+        secondLevel.add(movies);
+        secondLevel.add(games);
+        
+        thirdLevelMovies.put(movies[0], horror);
+        thirdLevelMovies.put(movies[1], action);
+        thirdLevelMovies.put(movies[2], thriller);
+        
+        thirdLevelGames.put(games[0], fps);
+        thirdLevelGames.put(games[1], moba);
+        thirdLevelGames.put(games[2], rpg);
+        thirdLevelGames.put(games[3], racing);
+        
+        data.add(thirdLevelMovies);
+        data.add(thirdLevelGames);
+        
+        expandableListView = (ExpandableListView) findViewById(R.id.expandible_listview);
+        ParentLevel parentLevelAdapter = new ParentLevel(this, parent, secondLevel, data);
+        expandableListView.setAdapter(parentLevelAdapter);   
+    
+
+```
+
+
+
+
+
+## Built Using
+- Android Studio 2.3.2
+- Min SDK 16, Target SDK 25
+- Build Tools 25.0.3
+- Gradle 2.3.2
+*Code will work fine as long as above configurations are met.*
+*You will need to possibly edit code if you change min sdks etc.*
+
+
+
+
+## Contributing
+
+Anyone is allowed to fork and create a pull request provided that the code is improved in anyway.
+
+
+## Authors
+
+* [Talha Hasan Zia](https://github.com/talhahasanzia) - *Created sample working project with dynamic data.*
+* Based on [gist code](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) provided by [Stephane Schittly](https://github.com/st-f)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+
