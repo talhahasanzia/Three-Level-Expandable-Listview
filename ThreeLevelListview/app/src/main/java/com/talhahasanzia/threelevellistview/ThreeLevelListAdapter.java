@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class ParentLevel extends BaseExpandableListAdapter {
+public class ThreeLevelListAdapter extends BaseExpandableListAdapter {
 
     String[] parentHeaders;
     List<String[]> secondLevel;
     private Context context;
     List<LinkedHashMap<String, String[]>> data;
 
-    public ParentLevel(Context context, String[] parentHeader, List<String[]> secondLevel, List<LinkedHashMap<String, String[]>> data) {
+    public ThreeLevelListAdapter(Context context, String[] parentHeader, List<String[]> secondLevel, List<LinkedHashMap<String, String[]>> data) {
         this.context = context;
 
         this.parentHeaders = parentHeader;
