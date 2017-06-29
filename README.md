@@ -104,7 +104,7 @@ Anyone is allowed to fork and create a pull request provided that the code is im
 * [Talha Hasan Zia](https://github.com/talhahasanzia) - *Created sample working project with dynamic data.*
 * Based on [gist code](https://gist.github.com/st-f/2b2a838d3f0258c5c33f) provided by [Stephane Schittly](https://github.com/st-f)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/talhahasanzia/Three-Level-Expandable-Listview/contributors) who participated in this project.
 
 ## License
 
